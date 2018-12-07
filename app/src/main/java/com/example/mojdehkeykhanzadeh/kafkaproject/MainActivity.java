@@ -3,6 +3,7 @@ package com.example.mojdehkeykhanzadeh.kafkaproject;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +44,7 @@ private String topic3;
         });
     }
     public void saveTopic(){
-        String URL = "${endpoint}";
+        String URL = "endpoint";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         text1 = findViewById(R.id.editText1);
         text2 = findViewById(R.id.editText2);
@@ -57,6 +58,12 @@ private String topic3;
                     @Override
                     public void onResponse(String response) {
                         Log.e("Response", response);
+                      //  Toast.makeText(MainActivity.this,response,Toast.LENGTH_LONG).
+                               // getGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0).show();
+                        Toast toast= Toast.makeText(getApplicationContext(),
+                                response, Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
 
                     }
                 },
@@ -69,7 +76,7 @@ private String topic3;
                         // this is the relevant method
                         @Override
                         public byte[] getBody() {
-                            String httpPostBody=topic1 +'\n'+ topic2 +'\n'+ topic3;
+                            String httpPostBody=topic1 +"\r\n"+ topic2 +"\r\n"+ topic3;
                             return httpPostBody.getBytes();
                         }
 
