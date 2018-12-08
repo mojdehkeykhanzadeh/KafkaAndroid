@@ -1,5 +1,8 @@
 package com.example.mojdehkeykhanzadeh.kafkaproject;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +38,7 @@ private String topic3;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnSave1 = (Button) findViewById(R.id.buttonSend1);
+        btnSave1.setBackgroundColor(Color.GREEN);
         btnSave1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +47,7 @@ private String topic3;
             }
         });
         Button btnSave2= (Button) findViewById(R.id.buttonSend2);
+        btnSave2.setBackgroundColor(Color.GREEN);
         btnSave2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +56,7 @@ private String topic3;
             }
         });
         Button btnSave3= (Button) findViewById(R.id.buttonSend3);
+        btnSave3.setBackgroundColor(Color.GREEN);
         btnSave3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,10 +64,28 @@ private String topic3;
                 saveTopic3();
             }
         });
+        Button btnGet = (Button) findViewById(R.id.buttonGet);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGetActivity();
+            }
+        });
+    }
+
+    public void openGetActivity() {
+
+        Intent intent = new Intent(this, GetActivity.class);
+
+        //intent.putExtra("getT1", firstTop);
+        //intent.putExtra("getT2", secondTop);
+        //intent.putExtra("getT3", thirdTop);
+        startActivity(intent);
+
 
     }
     public void saveTopic1(){
-        String URL = "endpoint1";
+        String URL = "postendpoint";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         text1 = findViewById(R.id.editText1);
         topic1 = text1.getText().toString();
@@ -95,7 +119,7 @@ private String topic3;
         requestQueue.add(objectRequest);
     }
     public void saveTopic2(){
-        String URL = "endpoint2";
+        String URL = "postendpoint";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         text2 = findViewById(R.id.editText2);
         topic2 = text2.getText().toString();
@@ -129,7 +153,7 @@ private String topic3;
         requestQueue.add(objectRequest);
     }
     public void saveTopic3(){
-        String URL = "endpoint3";
+        String URL = "postendpoint";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         text3 = findViewById(R.id.editText3);
         topic3=text3.getText().toString();
